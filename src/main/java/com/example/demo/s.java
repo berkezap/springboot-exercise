@@ -1,4 +1,4 @@
 package com.example.demo;
 
-public class s {slasfdsafs
+public class s {sl
 }
