@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.services.UserService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,6 +13,7 @@ public class User {
 
     @Id
     Long id;
+ 
 
     String userName;
     String password;

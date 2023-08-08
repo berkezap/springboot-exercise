@@ -12,7 +12,6 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Comment {
     @Id
     Long id;
-    Long postId;
 
     @ManyToOne(fetch = FetchType.LAZY) // User objesinin database'den hemen çekme
     @JoinColumn(name = "user_id", nullable = false )// User columuna bağla

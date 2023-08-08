@@ -22,7 +22,6 @@ public class Post {
     User user;
 
 
-    Long userId;
     String title;
     @Lob
     /*

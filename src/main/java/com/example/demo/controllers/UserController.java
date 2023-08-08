@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.User;
 import com.example.demo.repos.UserRepository;
+import com.example.demo.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,43 +12,35 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    public UserController(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public UserController(UserService userService){
+        this.userService = userService;
     }
     //getirmek için
     @GetMapping
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
     //yaratmak için
     @PostMapping
     public User createUser(@RequestBody User newUser){
-        return userRepository.save(newUser);
+        return userService.saveOneUser(newUser);
     }
 
     @GetMapping("/{userId}")
     public User getOneUser(@PathVariable Long userId){
         //custom exception
-        return userRepository.findById(userId).orElse(null);
+        return userService.getOneUser(userId);
     }
 
     @PutMapping("/{userId}")
     public User updateOneUser(@PathVariable Long userId, @RequestBody User newUser) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            User foundUser = user.get();
-            foundUser.setUserName(newUser.getUserName());
-            foundUser.setPassword(newUser.getPassword());
-            userRepository.save(foundUser);
-            return foundUser;
-        } else
-            return null;
+    return userService.updateOneUser(userId, newUser);
     }
         @DeleteMapping("/{userId}")
         public void deleteOneUser (@PathVariable Long userId){
-            userRepository.deleteById(userId);
+            userService.deleteById(userId);
         }
 
 
