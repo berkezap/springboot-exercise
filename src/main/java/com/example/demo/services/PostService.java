@@ -16,6 +16,7 @@ public class PostService {
         return postRepository.save(newPost);
     };
     private PostRepository postRepository;
+    //deneme
     private UserService userService;
 
     public PostService(PostRepository postRepository, UserService userService) {
